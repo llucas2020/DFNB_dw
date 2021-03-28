@@ -5,8 +5,7 @@ PURPOSE: Create the dbo.tblNAICSCodeHier table
 MODIFICATION LOG:
 Ver      Date        Author        Description
 -----   ----------   -----------   -------------------------------------------------------------------------------
-1.0     11/12/2019   JJAUSSI       1. Built this table for LDS BC IT240
-2.0     03/27/2021   LLUCAS2020    2. Added PK and NOT NULL
+1.0     03/27/2021   LLUCAS2020    1. Built this to load data for IT243
 
 
 RUNTIME: 
@@ -22,27 +21,32 @@ of the code the rights of the Free Software Definition. All derivative work can 
 distributed under the same license terms.
  
 ******************************************************************************************************************/
-
 USE [DFNB3]
 GO
 
-DROP TABLE [dbo].[tblNAICSCodeHier]
+/****** Object:  StoredProcedure [dbo].[usp_LoadDateDim]    Script Date: 11/17/2019 6:06:29 PM ******/
+--DROP PROCEDURE [dbo].[usp_LoadDateDim]
+--GO
+
+/****** Object:  StoredProcedure [dbo].[usp_LoadDateDim]    Script Date: 11/17/2019 6:06:29 PM ******/
+SET ANSI_NULLS ON
 GO
 
-CREATE TABLE [dbo].[tblNAICSCodeHier](
-	[industry_sector_code] [float] NOT NULL,
-	[industry_sector_desc] [nvarchar](500) NOT NULL,
-	[industry_sub_sector_code] [float] NOT NULL,
-	[industry_sub_sector_desc] [nvarchar](500) NOT NULL,
-	[industry_group_code] [float] NOT NULL,
-	[industry_group_desc] [nvarchar](500) NOT NULL,
-	[industry_code] [float] NOT NULL,
-	[industry_desc] [nvarchar](500) NOT NULL,
-	[nation_industry_code] [float] NOT NULL,
-	[nation_industry_desc] [nvarchar](500) NOT NULL,
-CONSTRAINT [PK_tblNAICSCodeHier] PRIMARY KEY CLUSTERED
-(
-    [nation_industry_code] ASC
-)
-)
-;
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE PROCEDURE [dbo].[usp_LoadNAICSCodeHier]
+AS
+BEGIN
+
+    -- 1)Truncate exixsting data
+	TRUNCATE TABLE dbo.tblNAICSCodeHier;
+
+	-- 2)Reload data
+
+	INSERT INTO dbo.tblNAICSCodeHier
+	SELECT v.*
+	  FROM etl.v_naics_code_hier_load as v
+
+end;
