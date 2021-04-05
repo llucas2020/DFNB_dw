@@ -2,15 +2,12 @@
 NAME:    dbo.tblDateDim
 PURPOSE: Create the Date Dimension table
 
-SUPPORT: Jaussi Consulting LLC
-         www.jaussiconsulting.net
-         jon@jaussiconsulting.net
 
 MODIFICATION LOG:
 Ver       Date         Author       Description
 -------   ----------   ----------   -----------------------------------------------------------------------------
 1.0       11/17/2019   JJAUSSI      1. Built this script for LDS BC IT 243
-
+2.0       04/05/2021   LLUCAS2020   2. Run script to create table 
 
 RUNTIME: 
 1 sec

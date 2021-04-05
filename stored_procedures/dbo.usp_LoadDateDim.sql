@@ -13,7 +13,9 @@ SET QUOTED_IDENTIFIER ON
 GO
 
 
-CREATE PROCEDURE [dbo].[usp_LoadDateDim] (@v_num_years as INT)
+--CREATE PROCEDURE [dbo].[usp_LoadDateDim] (@v_num_years as INT)
+CREATE PROCEDURE [dbo].[usp_LoadDateDim] (@v_num_days as INT)
+
 AS
 BEGIN
 /*****************************************************************************************************************
@@ -28,7 +30,8 @@ MODIFICATION LOG:
 Ver       Date         Author       Description
 -------   ----------   ----------   -----------------------------------------------------------------------------
 1.0       11/17/2019   JJAUSSI      1. Built this starter script for LDS BC IT 243
-
+2.0       04/05/2021   LLUCAS2020   2. Run script to create stored procedure
+2.0       04/05/2021   LLUCAS2020   2. Swap @v_num_years to @v_num_days
 
 RUNTIME: 
 1 sec
@@ -151,7 +154,8 @@ SELECT CONVERT(VARCHAR, (@v_first_date + n.n), 112) AS date_id
      , NULL AS holiday_ind -- Challenge field
      , NULL AS holiday_name -- Challenge field
   FROM dbo.Nums AS n
-  WHERE n.n <= (365 * @v_num_years)
+  --WHERE n.n <= (365 * @v_num_years)
+  WHERE n.n <= (365 * @v_num_days)
   ORDER BY 1;
 
 
