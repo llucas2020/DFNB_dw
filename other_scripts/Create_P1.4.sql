@@ -11,7 +11,7 @@ Ver       Date         Author       Description
 -------   ----------   ----------   -----------------------------------------------------------------------------
 1.0       11/01/2019   JJAUSSI      1. Built this script  for LDS BC IT 240
 1.1       11/02/2019   JJAUSSI      1. Added data analysis insights
-
+1.2       04/07/2021   LLUCAS2020   2. Used Scrpit to create tables.
 
 RUNTIME: 
 30 sec
